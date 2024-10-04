@@ -4,6 +4,10 @@ import { ACTION_TYPE , reducer } from './functions/changeCount'
 
 function App() {
   // dispatch => reducer 에게 일을 시키는 함수
+  const [name, setName] = useState("");
+  const onChange = (e) => {
+    setName(e.target.value);
+  }
   const [rCount, dispatch] = useReducer(reducer, 0);
   const up = () => {
     dispatch({ type: ACTION_TYPE.up , payload: 1 });
@@ -14,6 +18,8 @@ function App() {
   return (
     <>
       <h1>New Counter using Reducer</h1>
+      <input type="text" value={name} onChange={onChange} />
+      <hr />
       <p>{rCount}</p>
       <button
         onClick={up}
